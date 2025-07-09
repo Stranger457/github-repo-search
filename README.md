@@ -61,51 +61,76 @@ App runs at: `http://localhost:8080`
 
 ---
 
-## API Endpoints
+## API Specifications
 
-### 1. Search Repositories
+### 1.Search GitHub Repositories
 
-**GET** `/api/github/search`
+- **Endpoint**: `POST /api/github/search`
+- **Description**: Fetch repositories from GitHub API and store in the database.
 
-**Query Params:**
+#### Request Body
 
-| Param    | Required | Description                  |
-| -------- | -------- | ---------------------------- |
-| topic    | No       | Filter by topic              |
-| language | No       | Filter by language           |
-| keyword  | No       | General search keyword       |
-| minStars | No       | Filter by minimum star count |
-| page     | No       | Page number (default: 0)     |
-| size     | No       | Page size (default: 10)      |
-
-**Example:**
-
-```http
-GET /api/github/search?topic=spring&language=java&minStars=50&page=0&size=5
+```json
+{
+  "query": "spring boot",
+  "language": "Java",
+  "sort": "stars"
+}
 ```
 
-**Response:**
+#### Successful Response
+
+```json
+{
+  "message": "Repositories fetched and saved successfully",
+  "repositories": [
+    {
+      "id": 123456,
+      "name": "spring-boot-example",
+      "description": "An example repository for Spring Boot",
+      "owner": "user123"
+    }
+  ]
+}
+```
+
+---
+
+### 2. Retrieve Stored Results
+
+- **Endpoint**: `GET /api/github/repositories`
+- **Description**: Retrieve stored repositories with optional filters.
+
+#### Request Parameters
+
+- `language` (optional): Filter by programming language
+- `minStars` (optional): Minimum number of stars
+- `sort` (optional): Sort by `stars`, `forks`, or `updated` (default: stars)
+
+#### Example Request
+
+```
+GET /api/github/repositories?language=Java&minStars=100&sort=stars
+```
+
+#### Example Response
 
 ```json
 {
   "repositories": [
     {
-      "name": "spring-boot",
-      "description": "Spring Boot makes it easy to create stand-alone...",
-      "stars": 68000,
+      "id": 123456,
+      "name": "spring-boot-example",
+      "description": "An example repository for Spring Boot",
+      "owner": "user123",
       "language": "Java",
-      "url": "https://github.com/spring-projects/spring-boot"
+      "stars": 450,
+      "forks": 120,
+      "lastUpdated": "2024-01-01T12:00:00Z"
     }
-  ],
-  "pagination": {
-    "page": 0,
-    "size": 5,
-    "totalElements": 500,
-    "totalPages": 100
-  }
+  ]
 }
-
----
+```
 
 ##  Testing
 
