@@ -46,7 +46,7 @@ A Spring Boot application that provides an interface to search and filter GitHub
 ### Clone and Build
 
 ```bash
-git clone https://github.com/your-username/github-search-api.git
+git clone https://github.com/your-username/github-repo-search.git
 cd github-search-api
 mvn clean install
 ```
