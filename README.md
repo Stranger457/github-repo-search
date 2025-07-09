@@ -31,25 +31,8 @@ A Spring Boot application that provides an interface to search and filter GitHub
 
 ## Project Structure
 
-src/
-├── main/
-│   ├── java/
-│   │   └── com.example.github_repo_search/
-│   │       ├── config/
-│   │       ├── controller/
-│   │       ├── dto/
-│   │       ├── entity/
-│   │       ├── exception/
-│   │       ├── repository/
-│   │       ├── service/
-│   │       └── GithubRepoSearchApplication.java
-│   └── resources/
-│       └── application.properties
-└── test/
-    └── java/
-        └── com.example.github_repo_search/
-            ├── service/
-            └── GithubRepoSearchApplicationTests.java
+<img width="489" alt="image" src="https://github.com/user-attachments/assets/637c4b5a-418b-4044-8389-e2f393aab068" />
+
 
 ---
 
